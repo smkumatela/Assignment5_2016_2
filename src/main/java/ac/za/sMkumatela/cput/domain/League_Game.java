@@ -6,6 +6,6 @@ package ac.za.sMkumatela.cput.domain;
 public class League_Game implements Broadcaster {
 
     public String typeOfMatch() {
-        return "League Match";
+        return "Nedbank Cup";
     }
 }

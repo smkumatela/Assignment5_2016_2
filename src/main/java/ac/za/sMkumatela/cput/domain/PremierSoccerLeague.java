@@ -54,12 +54,12 @@ public class PremierSoccerLeague implements Serializable {
         private Long id;
         private String stadiums;
 
-        public Builder(String abbreviation){
-            this.abbreviation = abbreviation;
+        public Builder(String leagueName){
+            this.leagueName = leagueName;
         }
 
-        public Builder LeagueName(String value){
-            this.leagueName = value;
+        public Builder abbreviation(String value){
+            this.abbreviation = value;
             return this;
         }
 

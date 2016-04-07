@@ -4,6 +4,8 @@ import ac.za.sMkumatela.cput.domain.DevelopmentPlayer;
 import ac.za.sMkumatela.cput.domain.Player;
 import ac.za.sMkumatela.cput.domain.ProfessionalPlayer;
 
+import java.util.Map;
+
 /**
  * Created by Songezo on 2016-04-03.
  */
@@ -68,6 +70,13 @@ public class Player_Factory {
         playerStandard = builder.playerStandard;
         developmentPlayer = builder.developmentPlayer;
         proffesionalPlayer = builder.proffesionalPlayer;
+    }
+
+    public static Player_Factory createPlayer(Map<String, String> values){
+        Player_Factory  player = new Player_Factory.Builder(values.get("Player Standard"))
+                .developmentPlayer(values.get("Armature Player")).proffssionalPlayer(values.get("Advanced Player"))
+                .build();
+        return player;
     }
 
 }

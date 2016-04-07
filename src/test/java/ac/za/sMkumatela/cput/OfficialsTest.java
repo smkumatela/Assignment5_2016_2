@@ -31,7 +31,8 @@ public class OfficialsTest {
 
     @Test
     public void testCreateOfficials() throws Exception {
-        officials_factory = new Officials_Factory();
-        Assert.assertEquals("reffere1", officials_factory.getOfficials("reffere"));
+        Officials_Factory officials = Officials_Factory.createOfficials(values);
+        Assert.assertEquals("reffere1", officials.getOfficials("Reffere").requestOfficials("officials"));
+//        Assert.assertEquals("reffere1", officials_factory.getOfficials("reffere"));
     }
 }

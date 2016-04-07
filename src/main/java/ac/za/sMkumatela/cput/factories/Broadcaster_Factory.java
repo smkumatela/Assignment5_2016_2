@@ -4,6 +4,8 @@ import ac.za.sMkumatela.cput.domain.Broadcaster;
 import ac.za.sMkumatela.cput.domain.Cup_Game;
 import ac.za.sMkumatela.cput.domain.League_Game;
 
+import java.util.Map;
+
 /**
  * Created by Songezo on 2016-04-02.
  */
@@ -72,4 +74,9 @@ public class Broadcaster_Factory {
         leagueGame = builder.leagueGame;
     }
 
+    public static Broadcaster_Factory createBoadcaster(Map<String, String> values){
+        Broadcaster_Factory broadcaster = new Broadcaster_Factory.Builder(values.get("Type of Match"))
+                .leagueGame(values.get("First Leg Match")).cupGame(values.get("Nedbank Cup Match")).build();
+        return broadcaster;
+    }
 }

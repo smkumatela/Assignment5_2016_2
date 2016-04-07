@@ -26,16 +26,16 @@ public class TournamentTest {
 
     @Test
     public void testCreateTournament() throws Exception {
-        Tournaments tournaments = Tournament_Factory.createTournament("Nedbank Cup", 16, 200000.00);
-        Assert.assertEquals("Nedbank Cup", tournaments.gettName());
+        Tournaments tournament_factory = Tournament_Factory.createTournament("Nedbank Cup", 16, 2000000.00, null);
+        Assert.assertEquals("Nedbank Cup", tournament_factory.gettName());
     }
 
     @Test
     public void testUpdateTournament() throws Exception {
-        Tournaments tournaments = Tournament_Factory.createTournament("Nedbank Cup", 16, 200000.00);
+        Tournaments tournaments = Tournament_Factory.createTournament("Nedbank Cup", 16, 200000.00, null);
         Tournaments newTournament = new Tournaments.Builder("MTN Top 8").numOfTeams(8).copy(tournaments)
                 .prizeMoney(500000.00).build();
-        Assert.assertEquals(16, newTournament.getNumOfTeams());
+        Assert.assertEquals(500000.00, newTournament.getPrizeMoney(), 0.0);
         Assert.assertEquals(16, tournaments.getNumOfTeams());
     }
 }

@@ -1,8 +1,8 @@
 package ac.za.sMkumatela.cput.factories;
 
-import ac.za.sMkumatela.cput.domain.Coach;
-import ac.za.sMkumatela.cput.domain.TechnicalTeam;
-import ac.za.sMkumatela.cput.domain.Trainer;
+import ac.za.sMkumatela.cput.domain.*;
+
+import java.util.Map;
 
 /**
  * Created by Songezo on 2016-04-02.
@@ -23,6 +23,20 @@ public class TechnicalTeam_Factory {
             technicalTeam = new TechnicalTeam_Factory();
         }
         return technicalTeam;
+    }
+
+    public Coach getCoachRole(String coachRole){
+        if ("Armature".equalsIgnoreCase(coachRole)){
+               return new Coach();
+        }
+        return null;
+    }
+
+    public Trainer getTrainerRole(String trainerRole){
+        if ("Advanced".equalsIgnoreCase(trainerRole)){
+            return new Trainer();
+        }
+        return null;
     }
 
     public TechnicalTeam getOccupation(String occupation){
@@ -83,5 +97,11 @@ public class TechnicalTeam_Factory {
         physicTrainer.setOccupation(strikerCoach);
 
         return strikerCoach;
+    }
+
+    public static TechnicalTeam_Factory createTechnicalTeam(Map<String, String> values){
+        TechnicalTeam_Factory technicalTeam = new TechnicalTeam_Factory.Builder(values.get("Occupation"))
+                .coach(values.get("Defence Coach")).trainer(values.get("Physical Trainer")).build();
+        return technicalTeam;
     }
 }

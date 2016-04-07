@@ -26,8 +26,7 @@ public class Tournament_Factory {
         return technicalTeam;
     }
 
-    public static Tournaments createTournament(String name, int numOfTeams, double prize){
-
+    public static Tournaments createTournament(String name, int numOfTeams, double prize, Long id){
         Tournaments tournament = new Tournaments.Builder("Nedbank Cup")
                 .numOfTeams(16).prizeMoney(2000000).build();
         return tournament;

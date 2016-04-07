@@ -4,12 +4,14 @@ import ac.za.sMkumatela.cput.domain.FourthOfficial;
 import ac.za.sMkumatela.cput.domain.Officials;
 import ac.za.sMkumatela.cput.domain.Reffere;
 
+import java.util.Map;
+
 /**
  * Created by Songezo on 2016-04-02.
  */
 public class Officials_Factory {
     private String matchOfficials;
-    private String fourthOficial;
+    private String fourthOfficial;
     private String reffere;
 
     private static Officials_Factory officials = null;
@@ -34,7 +36,7 @@ public class Officials_Factory {
 
     public static class Builder{
         private String matchOfficials;
-        private String fourthOficial;
+        private String fourthOfficial;
         private String reffere;
 
         public Builder(String matchOfficials){
@@ -42,7 +44,7 @@ public class Officials_Factory {
         }
 
         public Builder fourthOfficials(String value){
-            this.fourthOficial = value;
+            this.fourthOfficial = value;
             return this;
         }
 
@@ -53,7 +55,7 @@ public class Officials_Factory {
 
         public Builder copy(Officials_Factory value){
             this.reffere = value.reffere;
-            this.fourthOficial = value.fourthOficial;
+            this.fourthOfficial = value.fourthOfficial;
             this.matchOfficials = value.matchOfficials;
             return this;
         }
@@ -65,7 +67,7 @@ public class Officials_Factory {
 
     public Officials_Factory(Builder builder){
         reffere = builder.reffere;
-        fourthOficial = builder.fourthOficial;
+        fourthOfficial = builder.fourthOfficial;
         matchOfficials = builder.matchOfficials;
     }
 
@@ -82,5 +84,11 @@ public class Officials_Factory {
         timeKeeper.setMatchOfficial(insideField);
 
         return insideField;
+    }
+
+    public static Officials_Factory createOfficials(Map<String, String> values){
+        Officials_Factory officials = new Officials_Factory.Builder(values.get("Match Officials"))
+                .fourthOfficials(values.get("Time Keeper")).reffere(values.get("whistle Blower")).build();
+        return officials;
     }
 }

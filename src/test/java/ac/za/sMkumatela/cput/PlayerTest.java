@@ -23,18 +23,29 @@ public class PlayerTest {
         player_factory = new Player_Factory();
         values = new HashMap<String, String>();
         player = player_factory.getPlayerStandard("Professional");
+
+        values.put("Player Standard", "Player State");
+        values.put("development player", "Armature Player");
+        values.put("Professional Player", "Advanced Player");
+
+
     }
 
     @Test
     public void testCreatePlayer() throws Exception {
-        Assert.assertEquals("Armature Player", player.playerStandard());
+        Player_Factory player = Player_Factory.createPlayer(values);
+        Assert.assertEquals("Armature Playe", player.getPlayerStandard("Armature").playerStandard());
     }
 
     @Test
     public void testUpdatePlayer() throws Exception {
-        player = player_factory.getPlayerStandard("Professional");
-        Player_Factory newPlayerFactory = new Player_Factory.Builder(player.playerStandard()).copy(player_factory).build();
+        Player_Factory player = Player_Factory.createPlayer(values);
+        Player_Factory newPlayer = new Player_Factory.Builder(values.get("Development Teams"))
+                .developmentPlayer(values.get("Armature")).copy(player)
+                .proffssionalPlayer(values.get("Advanced Player"))
+                .build();
 
-        Assert.assertEquals("Armature Player", player.playerStandard());
+        Assert.assertEquals("Armature Player", player.getPlayerStandard("Development Teams").playerStandard());
+        Assert.assertEquals("Advanced Player", newPlayer.getPlayerStandard("Professional Teams").playerStandard());
     }
 }

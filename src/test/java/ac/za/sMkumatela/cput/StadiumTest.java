@@ -2,6 +2,7 @@ package ac.za.sMkumatela.cput;
 
 import ac.za.sMkumatela.cput.domain.Stadium;
 import ac.za.sMkumatela.cput.factories.Stadium_Factory;
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -13,6 +14,7 @@ import java.util.Map;
  */
 public class StadiumTest {
 
+    private Long id;
     private Stadium stadium;
     private Stadium_Factory stadium_factory;
     private Map<String, String> values;
@@ -23,11 +25,23 @@ public class StadiumTest {
         stadium = new Stadium();
         stadium_factory = new Stadium_Factory();
 
-        values.put("name", "moses mabida");
+        values.put("name", "Moses Mabida");
         values.put("location", "durban");
     }
 
     @Test
     public void testCreateStadium() throws Exception {
+        Stadium stadium = Stadium_Factory.createStadium(values, id);
+        Assert.assertEquals("Moses Mabida", stadium.getName());
+    }
+
+    @Test
+    public void testUpdateStadium() throws Exception {
+        Stadium stadium = Stadium_Factory.createStadium(values, id);
+        Stadium newStadium = new Stadium.Builder(stadium.getName()).copy(stadium).location("London")
+                .build();
+        Assert.assertEquals("Moses Mabida", newStadium.getName());
+        Assert.assertEquals("London", newStadium.getLocation());
+        Assert.assertEquals("Moses Mabida", stadium.getName());
     }
 }

@@ -8,5 +8,5 @@ public interface PremierSoccerLeagueBuilder {
     public void buildAbbreviation();
     public void buildStudium();
 
-    PremierSoccerLeague getPremierSoccerLeague();
+    public PremierSoccerLeague getPremierSoccerLeague();
 }

@@ -24,22 +24,26 @@ public class BroadcasterTest {
         values = new HashMap<String, String>();
 
         values.put("type of match", "Cup Game");
-        values.put("type of match", "League Game");
+        values.put("type of match", "Nedbank Cup");
 
-        broadcaster = broadcaster_fact.getTypeOfMatchBroadcasted("League Match");
+
     }
 
     @Test
     public void testCreateBroadcaster() throws Exception {
-        Assert.assertEquals("League Match", broadcaster.typeOfMatch());
+        Broadcaster_Factory broadcaster_factory = Broadcaster_Factory.createBoadcaster(values);
+        Assert.assertEquals("Nedbank Cup", broadcaster_factory.getTypeOfMatchBroadcasted("Cup Game").typeOfMatch());
     }
 
     @Test
     public void testUpdateBroadcaster() throws Exception {
-        broadcaster = broadcaster_fact.getTypeOfMatchBroadcasted("League Match");
-        newBr = new Broadcaster_Factory.Builder(broadcaster.typeOfMatch()).copy(broadcaster_fact)
-                .leagueGame("League Game").build();
-        //Assert.assertEquals("League1 Game", newBr.getTypeOfMatchBroadcasted("League Game"));
-        Assert.assertEquals("League Match", broadcaster.typeOfMatch());
+        Broadcaster_Factory broadcaster_factory = Broadcaster_Factory.createBoadcaster(values);
+        Broadcaster_Factory broadcaste12 = new Broadcaster_Factory.Builder(values.get("League Match"))
+                .cupGame(values.get("Cup Game")).copy(broadcaster_factory).cupGame(values.get("type of match"))
+                .build();
+
+
+        Assert.assertEquals("Nedbank Cup", broadcaster_factory.getTypeOfMatchBroadcasted("Cup Game").typeOfMatch());
+        Assert.assertEquals("Nedbank Cup", broadcaste12.getTypeOfMatchBroadcasted("Cup Game").typeOfMatch());
     }
 }
